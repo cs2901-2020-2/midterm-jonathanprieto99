@@ -6,11 +6,11 @@ public class SubjectsTest {
     @Test
     public void test_get_data_single() {
         Subject colegio = new Subject();
-        Cliente barcharMonitor = new Cliente(0);
-        colegio.addObserver(barcharMonitor);
+        barChartMonitor barcharMonitor = new barChartMonitor();
+        colegio.addObserver(barcharMonitor.clienteNotas);
         String[][] notas = new String[][]{{"A","15"},{"B","16"},{"C","17"},{"D","18"}};
         colegio.addGrades(notas);
 
-        Assert.assertEquals(barcharMonitor.getGrades(), colegio.getGrades());
+        Assert.assertEquals(barcharMonitor.clienteNotas.getGrades(), colegio.getGrades());
     }
 }

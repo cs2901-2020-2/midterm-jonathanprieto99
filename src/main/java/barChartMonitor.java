@@ -8,11 +8,13 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import java.awt.Color;
+import java.awt.EventQueue;
 
-public class BarChartMonitor extends JFrame {
+public class barChartMonitor extends JFrame {
 
-    public void BarChartEx() {
+    Cliente clienteNotas=new Cliente(1);
 
+    public barChartMonitor() {
         initUI();
     }
 
@@ -36,8 +38,6 @@ public class BarChartMonitor extends JFrame {
 
         var dataset = new DefaultCategoryDataset();
 
-        Cliente clienteNotas=new Cliente(1);
-
         String[][] grades = clienteNotas.getGrades();
 
         for (String[] grade : grades) {
@@ -49,15 +49,20 @@ public class BarChartMonitor extends JFrame {
 
     private JFreeChart createChart(CategoryDataset dataset) {
 
-        JFreeChart barChart = ChartFactory.createBarChart(
+        return  ChartFactory.createBarChart(
                 "Grades",
                 "",
                 "Calificacion",
                 dataset,
                 PlotOrientation.VERTICAL,
                 false, true, false);
+    }
 
-        return barChart;
+    public static void encender(){
+        EventQueue.invokeLater(() -> {
+            var ex = new barChartMonitor();
+            ex.setVisible(true);
+        });
     }
 
 }
